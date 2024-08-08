@@ -1,0 +1,9 @@
+version: '3'
+services:
+  node:
+    build: .
+    ports:
+      - "${QR_PORT}:3000"
+    volumes:
+      - ./nodejs:/usr/src/app
+    tty: true
