@@ -1,8 +1,21 @@
-#Version minima de nodejs es la 18 
-FROM node:18
+#Imagen del docker
+FROM node:18-bullseye as bot
 
-#Directorio dentro del Docker
-WORKDIR /usr/src/app
+#Directorio de trabajo dentro del docker
+WORKDIR /app
 
-#Instalamos npm de forma global
-RUN npm install -g npm
+#Copiamos el package,json dentro del docker
+COPY package*.json ./
+
+#Instalamos las dependencias dentro del docker
+RUN npm i
+
+#Copia TODO dentro del Docker
+COPY . .
+
+ARG RAILWAY_STATIC_URL
+ARG PUBLIC_URL
+ARG PORT
+
+#Comando inicial al Construir el docker
+CMD ["npm", "start"]

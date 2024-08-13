@@ -2,3 +2,8 @@ node_modules/
 .env
 bot.qr.png
 bot_sessions/
+baileys.log
+core.class.log
+queue.class.log
+*_sessions
+*.log

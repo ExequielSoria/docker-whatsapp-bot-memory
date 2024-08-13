@@ -5,5 +5,5 @@ services:
     ports:
       - "${QR_PORT}:3000"
     volumes:
-      - ./nodejs:/usr/src/app
+      - ./app:/usr/src/app
     tty: true
