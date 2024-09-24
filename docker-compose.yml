@@ -3,7 +3,8 @@ services:
   node:
     build: .
     ports:
-      - "${QR_PORT}:3000"
+      - "${QR_PORT}:${QR_PORT}"
     volumes:
-      - ./app:/usr/src/app
-    tty: true
+      - ./app/files:/app/files:rw
+    env_file:
+      - .env

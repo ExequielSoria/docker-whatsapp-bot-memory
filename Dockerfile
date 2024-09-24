@@ -5,17 +5,23 @@ FROM node:18-bullseye as bot
 WORKDIR /app
 
 #Copiamos el package,json dentro del docker
-COPY package*.json ./
+COPY /app/package*.json ./
+
+#Copiamos el .env porque el main.js tambien lo usa
+COPY .env /app
 
 #Instalamos las dependencias dentro del docker
 RUN npm i
 
+#Instalamos nodemon globalmente
+RUN npm install -g nodemon
+
 #Copia TODO dentro del Docker
-COPY . .
+COPY /app /app
 
 ARG RAILWAY_STATIC_URL
 ARG PUBLIC_URL
 ARG PORT
 
 #Comando inicial al Construir el docker
-CMD ["npm", "start"]
+CMD ["nodemon", "app.js"]
